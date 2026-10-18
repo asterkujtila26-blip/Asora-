@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --asora-black: #0A0A0B;
+    --asora-navy: #0E1626;
+    --asora-charcoal: #2A2B2E;
+    --asora-stone: #B9B6AE;
+    --asora-ivory: #F1EBDD;
+    --asora-burgundy: #4A0E17;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #F1EBDD;
+    color: #0A0A0B;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, .font-serif-asora {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom utility classes */
+.tracking-wordmark {
+  letter-spacing: 0.55em;
+}
+
+.tracking-descriptor {
+  letter-spacing: 1.15em;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Restrained smooth scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1EBDD;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B9B6AE;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2A2B2E;
+}
