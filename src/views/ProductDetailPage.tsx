@@ -16,11 +16,8 @@ import {
   Palette,
   Check,
   Sliders,
-  ShieldAlert,
-  ShieldCheck,
 } from 'lucide-react';
 import { AiDescriptionPreviewBar } from '../components/product/AiDescriptionPreviewBar';
-import { AiBrandAuditor } from '../components/product/AiBrandAuditor';
 
 export const ProductDetailPage: React.FC = () => {
   const {
@@ -55,7 +52,6 @@ export const ProductDetailPage: React.FC = () => {
     product?.availableSizes[1] || 'M'
   );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isAuditorOpen, setIsAuditorOpen] = useState(false);
 
   // Accordion state
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
@@ -221,58 +217,32 @@ export const ProductDetailPage: React.FC = () => {
           </span>
         </nav>
 
-        {/* Quick Top Live Preview Toggle & Brand Auditor Trigger */}
-        <div className="flex items-center gap-2">
-          <div className="inline-flex items-center gap-1.5 p-1 bg-white/80 border border-[#0A0A0B]/15 rounded shadow-2xs text-[10px] font-mono">
-            <span className="text-neutral-500 px-1 font-semibold uppercase">TEMPLATE COPY:</span>
-            <button
-              onClick={() => setIsAiPreviewActive(false)}
-              className={`px-2.5 py-1 transition-all ${
-                !isAiPreviewActive
-                  ? 'bg-[#0A0A0B] text-[#F1EBDD] font-bold shadow-2xs'
-                  : 'text-neutral-600 hover:text-black'
-              }`}
-            >
-              ORIGINAL
-            </button>
-            <button
-              onClick={() => setIsAiPreviewActive(true)}
-              className={`px-2.5 py-1 transition-all flex items-center gap-1 ${
-                isAiPreviewActive
-                  ? 'bg-[#4A0E17] text-[#F1EBDD] font-bold shadow-2xs'
-                  : 'text-neutral-600 hover:text-black'
-              }`}
-            >
-              <Sparkles size={11} className="text-amber-300" />
-              <span>AI PREVIEW</span>
-            </button>
-          </div>
-
+        {/* Quick Top Live Preview Toggle */}
+        <div className="inline-flex items-center gap-1.5 p-1 bg-white/80 border border-[#0A0A0B]/15 rounded shadow-2xs text-[10px] font-mono">
+          <span className="text-neutral-500 px-1 font-semibold uppercase">TEMPLATE COPY:</span>
           <button
-            onClick={() => setIsAuditorOpen(!isAuditorOpen)}
-            className={`p-1.5 sm:px-3 sm:py-1 border text-[10px] font-mono uppercase transition-colors flex items-center gap-1.5 shadow-2xs ${
-              isAuditorOpen
-                ? 'bg-[#4A0E17] text-[#F1EBDD] border-[#4A0E17] font-bold'
-                : 'bg-white/80 border-[#0A0A0B]/15 text-[#4A0E17] hover:border-[#4A0E17]'
+            onClick={() => setIsAiPreviewActive(false)}
+            className={`px-2.5 py-1 transition-all ${
+              !isAiPreviewActive
+                ? 'bg-[#0A0A0B] text-[#F1EBDD] font-bold shadow-2xs'
+                : 'text-neutral-600 hover:text-black'
             }`}
-            title="Open AI Brand Auditor against ASORA Manifesto"
           >
-            <ShieldAlert size={12} className={isAuditorOpen ? 'text-amber-300' : 'text-[#4A0E17]'} />
-            <span className="hidden sm:inline">AI BRAND AUDITOR</span>
+            ORIGINAL
+          </button>
+          <button
+            onClick={() => setIsAiPreviewActive(true)}
+            className={`px-2.5 py-1 transition-all flex items-center gap-1 ${
+              isAiPreviewActive
+                ? 'bg-[#4A0E17] text-[#F1EBDD] font-bold shadow-2xs'
+                : 'text-neutral-600 hover:text-black'
+            }`}
+          >
+            <Sparkles size={11} className="text-amber-300" />
+            <span>AI PREVIEW</span>
           </button>
         </div>
       </div>
-
-      {/* Prominent Expandable AI Brand Auditor Banner if opened */}
-      {isAuditorOpen && (
-        <div className="mb-8 animate-in fade-in duration-200">
-          <AiBrandAuditor
-            product={product}
-            isOpen={isAuditorOpen}
-            onClose={() => setIsAuditorOpen(false)}
-          />
-        </div>
-      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
         {/* LEFT COLUMN: PRODUCT GALLERY */}
@@ -791,20 +761,6 @@ export const ProductDetailPage: React.FC = () => {
             <span className="uppercase font-bold">{templateFontStyle}</span>
           </button>
         )}
-
-        {/* AI Brand Auditor Dock Trigger */}
-        <button
-          onClick={() => setIsAuditorOpen(!isAuditorOpen)}
-          className={`px-3 py-1 rounded-full text-[10px] transition-colors flex items-center gap-1.5 font-bold ${
-            isAuditorOpen
-              ? 'bg-[#4A0E17] text-[#F1EBDD]'
-              : 'bg-white/10 hover:bg-white/20 text-[#F1EBDD]'
-          }`}
-          title="Toggle AI Brand Auditor"
-        >
-          <ShieldAlert size={11} className={isAuditorOpen ? 'text-amber-300' : 'text-amber-400'} />
-          <span>AUDITOR</span>
-        </button>
       </div>
     </div>
   );

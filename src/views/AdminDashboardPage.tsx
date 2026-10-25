@@ -17,10 +17,7 @@ import {
   Sparkles,
   Wand2,
   Eye,
-  ShieldAlert,
-  ShieldCheck,
 } from 'lucide-react';
-import { AiBrandAuditor } from '../components/product/AiBrandAuditor';
 
 export const AdminDashboardPage: React.FC = () => {
   const {
@@ -48,9 +45,7 @@ export const AdminDashboardPage: React.FC = () => {
     setTemplateColorSurface,
   } = useStore();
 
-  const [activeTab, setActiveTab] = useState<
-    'checklist' | 'settings' | 'products' | 'ai-copy' | 'brand-auditor' | 'orders' | 'subscribers'
-  >('checklist');
+  const [activeTab, setActiveTab] = useState<'checklist' | 'settings' | 'products' | 'ai-copy' | 'orders' | 'subscribers'>('checklist');
   const [selectedProductForAi, setSelectedProductForAi] = useState<string>(products[0]?.id || 'asora-crewneck-01');
   const [adminAiTone, setAdminAiTone] = useState<string>('Quiet Luxury & Tactility');
   const [isAdminGenerating, setIsAdminGenerating] = useState<boolean>(false);
@@ -157,18 +152,6 @@ export const AdminDashboardPage: React.FC = () => {
         >
           <Sparkles size={14} />
           <span>AI Copy Studio & Template Preview</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab('brand-auditor')}
-          className={`px-4 py-2 border transition-colors flex items-center gap-1.5 ${
-            activeTab === 'brand-auditor'
-              ? 'border-[#4A0E17] bg-[#4A0E17] text-[#F1EBDD] font-bold shadow-xs'
-              : 'border-[#0A0A0B]/20 bg-white/50 text-[#4A0E17] hover:border-[#4A0E17]'
-          }`}
-        >
-          <ShieldAlert size={14} className={activeTab === 'brand-auditor' ? 'text-amber-300' : 'text-[#4A0E17]'} />
-          <span>AI Brand Auditor</span>
         </button>
 
         <button
@@ -634,18 +617,6 @@ export const AdminDashboardPage: React.FC = () => {
 
                       <button
                         onClick={() => {
-                          setSelectedProductForAi(currentProd.id);
-                          setActiveTab('brand-auditor');
-                        }}
-                        className="px-3.5 py-2 border border-[#4A0E17] text-[#4A0E17] font-mono text-xs uppercase font-semibold hover:bg-[#4A0E17] hover:text-[#F1EBDD] transition-colors flex items-center gap-1.5"
-                        title="Audit copy against ASORA manifesto rules"
-                      >
-                        <ShieldAlert size={12} />
-                        <span>AUDIT COPY</span>
-                      </button>
-
-                      <button
-                        onClick={() => {
                           setIsAiPreviewActive(true);
                           openProductDetail(currentProd.id);
                         }}
@@ -789,54 +760,6 @@ export const AdminDashboardPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            );
-          })()}
-        </div>
-      )}
-
-      {/* TAB: AI BRAND AUDITOR & MANIFESTO COMPLIANCE */}
-      {activeTab === 'brand-auditor' && (
-        <div className="space-y-6 animate-in fade-in duration-200">
-          <div className="bg-white/80 border border-[#0A0A0B]/10 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[#4A0E17] font-bold">
-                  MANIFESTO COMPLIANCE AUDITOR // ASORA PARIS
-                </span>
-              </div>
-              <h2 className="font-editorial text-2xl sm:text-3xl font-light text-[#0A0A0B] mt-1">
-                AI Brand Auditor & Editorial Governance
-              </h2>
-              <p className="text-xs text-neutral-600 mt-1 max-w-2xl">
-                Automatically scans product descriptions, editorial subtitles, and SEO metadata against the house manifesto
-                (“MORE THAN CLOTHING. A MINDSET.”). Detects hype clichés, superlatives, exclamation points, and flags non-compliant copy with instant fixes.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2 self-start md:self-auto">
-              <span className="text-xs font-mono text-neutral-500">SELECT PRODUCT:</span>
-              <select
-                value={selectedProductForAi}
-                onChange={(e) => setSelectedProductForAi(e.target.value)}
-                className="bg-white border border-[#0A0A0B]/20 p-2 text-xs font-medium focus:outline-none"
-              >
-                {products.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* Render the full AI Brand Auditor component for the selected product */}
-          {(() => {
-            const currentProd = products.find((p) => p.id === selectedProductForAi) || products[0];
-            return (
-              <AiBrandAuditor
-                product={currentProd}
-                isOpen={true}
-              />
             );
           })()}
         </div>

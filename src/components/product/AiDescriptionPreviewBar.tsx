@@ -26,10 +26,7 @@ import {
   Maximize2,
   Minimize2,
   Atom,
-  ShieldAlert,
-  ShieldCheck,
 } from 'lucide-react';
-import { AiBrandAuditor } from './AiBrandAuditor';
 
 interface AiDescriptionPreviewBarProps {
   product: Product;
@@ -57,7 +54,6 @@ export const AiDescriptionPreviewBar: React.FC<AiDescriptionPreviewBarProps> = (
 
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [isStyleCustomizerOpen, setIsStyleCustomizerOpen] = useState(false);
-  const [isAuditorOpen, setIsAuditorOpen] = useState(false);
   const [selectedTone, setSelectedTone] = useState<string>(
     product.aiCopyDraft?.tone || 'Quiet Luxury & Tactility'
   );
@@ -346,21 +342,6 @@ export const AiDescriptionPreviewBar: React.FC<AiDescriptionPreviewBarProps> = (
             <span>FONTS & COLORS</span>
             {isStyleCustomizerOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
           </button>
-
-          {/* AI Brand Auditor Toggle Button */}
-          <button
-            onClick={() => setIsAuditorOpen(!isAuditorOpen)}
-            className={`px-2.5 py-1 text-[11px] font-mono uppercase flex items-center gap-1.5 border transition-colors ${
-              isAuditorOpen
-                ? 'bg-[#4A0E17] text-[#F1EBDD] border-[#4A0E17] font-bold shadow-xs'
-                : 'bg-white border-[#0A0A0B]/20 text-[#4A0E17] hover:border-[#4A0E17]'
-            }`}
-            title="Audit description & meta-copy against ASORA brand manifesto rules"
-          >
-            <ShieldAlert size={12} className={isAuditorOpen ? 'text-amber-300' : 'text-[#4A0E17]'} />
-            <span>BRAND AUDITOR</span>
-            {isAuditorOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
-          </button>
         </div>
 
         {/* Right side: Regenerate & Text Editor triggers */}
@@ -626,15 +607,6 @@ export const AiDescriptionPreviewBar: React.FC<AiDescriptionPreviewBarProps> = (
             </button>
           </div>
         </div>
-      )}
-
-      {/* 6. AI Brand Auditor Drawer / Modal */}
-      {isAuditorOpen && (
-        <AiBrandAuditor
-          product={product}
-          isOpen={isAuditorOpen}
-          onClose={() => setIsAuditorOpen(false)}
-        />
       )}
     </div>
   );

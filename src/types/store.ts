@@ -68,48 +68,6 @@ export type TemplateFontSize = 'compact' | 'standard' | 'generous';
 export type TemplateColorSurface = 'ivory' | 'black' | 'navy' | 'travertine' | 'burgundy';
 export type TemplateLineHeight = 'compact' | 'balanced' | 'relaxed';
 
-export interface BrandAuditIssue {
-  id: string;
-  type:
-    | 'prohibited_cliche'
-    | 'aggressive_urgency'
-    | 'exclamation_mark'
-    | 'emblem_misnomer'
-    | 'missing_substance'
-    | 'formatting_issue';
-  severity: 'high' | 'medium' | 'low';
-  flaggedText: string;
-  ruleTitle: string;
-  explanation: string;
-  suggestedReplacement?: string;
-}
-
-export interface BrandAuditResult {
-  score: number;
-  verdict: 'Atelier Compliant' | 'Needs Revision' | 'Non-Compliant';
-  summary: string;
-  issues: BrandAuditIssue[];
-  metrics: {
-    quietConfidenceScore: number;
-    textilePrecisionScore: number;
-    architecturalRestraintScore: number;
-    brandIntegrityScore: number;
-    formattingScore: number;
-    exclamationCount: number;
-    prohibitedWordCount: number;
-    wordCount: number;
-    readingTimeSec: number;
-  };
-  revisedCopy?: {
-    subtitle?: string;
-    description: string;
-    shortDescription?: string;
-    metaDescription?: string;
-  };
-  auditedAt: string;
-  source?: string;
-}
-
 export interface CartItem {
   id: string;
   productId: string;
